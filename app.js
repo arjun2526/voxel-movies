@@ -12,7 +12,7 @@ const saveFav=()=>{try{localStorage.setItem("vx-fav",JSON.stringify([...fav]))}c
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const grad=m=>`linear-gradient(155deg,hsl(${m.h[0]} 85% 38%),hsl(${m.h[1]} 80% 9%) 75%)`;
-const img=(u,m)=>u?`url("${esc(u)}"),${grad(m)}`:grad(m);
+const img=(u,m)=>u?`url('${esc(u)}'),${grad(m)}`:grad(m);
 const fmt=n=>n>=1e6?(n/1e6).toFixed(1)+"M":n>=1e3?(n/1e3).toFixed(1)+"K":String(n);
 const ago=d=>{const n=Math.floor((Date.now()-new Date(d))/D);return isNaN(n)?"":n<=0?"Added today":n===1?"Added yesterday":`Added ${n} days ago`};
 const NAV=[["home","Home"],["tv","TV Shows"],["cats","Categories"],["list","My List"]];
