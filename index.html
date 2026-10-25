@@ -7,6 +7,9 @@
 <script>
 addEventListener("error",function(e){var m=e.target&&e.target.src?"Could not load "+e.target.src.split("/").pop():e.message;if(!m)return;var t=document.createElement("pre");t.style.cssText="position:fixed;z-index:99;left:8px;right:8px;bottom:8px;margin:0;padding:12px;border-radius:12px;background:#3a0508;color:#fff;font:12px/1.4 monospace;white-space:pre-wrap";t.textContent="Page error: "+m+(e.lineno?" (line "+e.lineno+")":"");document.documentElement.appendChild(t)},true);
 </script>
+<script>
+setTimeout(function(){if(window.__voxel)return;var t=document.createElement("pre");t.style.cssText="position:fixed;z-index:99;left:8px;right:8px;top:30%;margin:0;padding:16px;border-radius:14px;background:#3a0508;color:#fff;font:14px/1.5 sans-serif;white-space:pre-wrap";t.textContent="Voxel didn’t finish loading.\n\nThe index.html on GitHub is probably incomplete or old. Upload the file again (don’t paste the code), wait one minute, then reload with ?v=4 added to the address.";document.documentElement.appendChild(t)},2500);
+</script>
 <script src="config.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -157,6 +160,7 @@ section.row{padding:4px 0 8px}
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Title details"><div class="mcard" id="mc"></div></div>
 
 <script>
+window.__voxel=1;
 const API="";
 // Add character cut-out images (transparent PNG links) for each genre card, like Prime Video:
 // const GENRE_ART={ "Action":"https://your-site.com/action-heroes.png", "Comedy":"https://..." };
@@ -169,10 +173,4 @@ let live=false,view="home",genre="",term="",fav=new Set(),sig="",ht=0,hi=0,cur=n
 try{fav=new Set(JSON.parse(localStorage.getItem("vx-fav")||"[]"))}catch(e){}
 const saveFav=()=>{try{localStorage.setItem("vx-fav",JSON.stringify([...fav]))}catch(e){}};
 const $=s=>document.querySelector(s);
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const grad=m=>`linear-gradient(155deg,hsl(${m.h[0]} 85% 38%),hsl(${m.h[1]} 80% 9%) 75%)`;
-const img=(u,m)=>u?`url("${esc(u)}"),${grad(m)}`:grad(m);
-const fmt=n=>n>=1e6?(n/1e6).toFixed(1)+"M":n>=1e3?(n/1e3).toFixed(1)+"K":String(n);
-const ago=d=>{const n=Math.floor((Date.now()-new Date(d))/D);return isNaN(n)?"":n<=0?"Added today":n===1?"Added yesterday":`Added ${n} days ago`};
-const NAV=[["home","Home"],["tv","TV Shows"],["cats","Categories"],["list","My List"]];
-const gens=a=>[...new Set((a||M).map(m=>m.gen
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;"
